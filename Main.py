@@ -3,8 +3,8 @@ import streamlit as st
 import pandas as pd
 import google_spreadsheets as gs
 
-# ----------------- Widescreen ----------------- #
-st.set_page_config(layout="wide")
+# ----------------- Set Page ----------------- #
+st.set_page_config(page_title="Keuangan Ma'had Aly Ar-Rasyid", layout="wide")
 hide_streamlit_style = """
 <style>
 #MainMenu {visibility: hidden;}
