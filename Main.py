@@ -25,7 +25,7 @@ try:
 
     def get_sheet(gid):
         return pd \
-            .read_csv(f'{gs.google_spreadsheet}{gid}&single=true&output=csv') \
+            .read_csv(f'{gs.s_id}{gid}&single=true&output=csv') \
             .set_index('NIM')
 
 
@@ -43,49 +43,50 @@ try:
     nominal = []
 
     for i in column:
+        nominal.append(active_sheet_dict[i][find_id])
         if i == 'Nama':
-            st.header(f'Nama : {active_sheet_dict[i][find_id]} - (NIM : {find_id}) - (Angkatan : {angkatan})')
+            st.header(f'➤ Nama : {active_sheet_dict[i][find_id]} - (➤ NIM : {find_id}) - (➤ Angkatan : {angkatan})')
         elif i == 'Uang Pangkal':
             if pd.isna(active_sheet_dict[i][find_id]):
                 st.error('Belum bayar Uang Pangkal!', icon='❌')
             else:
                 st.success(f'Uang Pangkal telah terbayar: {active_sheet_dict[i][find_id]}', icon='✅')
 
-        else:
-            nominal.append(active_sheet_dict[i][find_id])
-
     nominal_show = []
     for i in nominal:
         if pd.isna(i):
-            nominal_show.append("BELUM BAYAR")
+            nominal_show.append("❌ BELUM BAYAR")
         else:
             nominal_show.append(i)
 
-    column.remove('Nama')
-    column.remove('Uang Pangkal')
 
-    col1, col2, col3 = st.columns(3, gap="large")
-
-
-    def show_table(title, start_from, end):
+    def show_table(title, start, end):
         st.subheader(title)
-        data = {
-            "Pembayaran": column[start_from - 1:end],
-            "Nominal": nominal_show[start_from - 1:end]
-        }
-        df = pd.DataFrame(data)
-        df.index += start_from
+        data = {"Nominal": nominal_show}
+        df = pd.DataFrame(data, index=column)
+        filtered_df = []
+        for x in column:
+            if x == 'Nama' or x == 'Uang Pangkal' or x[0] == '!':
+                filtered_df.append(x)
+
+        df = df.drop(filtered_df)
+        df = df.iloc[start - 1:end]
         st.table(df)
 
 
+    col1, col2, col3 = st.columns(3, gap="large")
+
     with col1:
-        show_table(title="Semester 1 - 2", start_from=1, end=13)
+        show_table(title="Semester 1 - 2", start=1, end=13)
 
     with col2:
-        show_table(title="Semester 3 - 4", start_from=14, end=26)
+        show_table(title="Semester 3 - 4", start=14, end=26)
 
     with col3:
-        show_table(title="Semester 5 - 6", start_from=27, end=len(column))
+        show_table(title="Semester 5 - 6", start=27, end=len(column))
+
+    st.markdown("**_Informasi: Data akan otomatis update sesuai server setelah ± 5 menit_**")
+    st.write(f"Admin Bagian Keuangan: {gs.phone_number} ({gs.bag_keuangan})")
 
 except ValueError:
     st.write("Wrong data")
