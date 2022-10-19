@@ -54,10 +54,11 @@ try:
 
     nominal_show = []
     for i in nominal:
-        if pd.isna(i) or i == '- 🔵 𝘒𝘦𝘵. =':
+        if pd.isna(i) or i == ' - 🔵 𝘒𝘦𝘵. = ':
             nominal_show.append("❌ BELUM BAYAR")
         else:
             nominal_show.append(i)
+        print(i)
 
 
     def show_table(title, start, end):
