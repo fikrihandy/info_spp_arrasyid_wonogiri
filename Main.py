@@ -58,7 +58,6 @@ try:
             nominal_show.append("❌ BELUM BAYAR")
         else:
             nominal_show.append(i)
-        print(i)
 
 
     def show_table(title, start, end):
