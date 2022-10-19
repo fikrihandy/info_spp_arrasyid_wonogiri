@@ -19,7 +19,7 @@ st.title("Rekap Biaya Administrasi Ma'had Aly Ar-Rasyid")
 try:
     find_id = int(st.text_input('Nomor Induk Mahasantriwati :'))
     find_id_str = repr(find_id)
-    angkatan = int(f'{find_id_str[-4]}{find_id_str[-3]}{find_id_str[-2]}{find_id_str[-1]}')
+    angkatan = int(f'{find_id_str[0]}{find_id_str[1]}')
     active_sheet_csv = pd.DataFrame()
 
 
@@ -29,9 +29,9 @@ try:
             .set_index('NIM')
 
 
-    if angkatan == 2022:
+    if angkatan == 22:
         active_sheet_csv = get_sheet(gs.data_22)
-    elif angkatan == 2023:
+    elif angkatan == 23:
         active_sheet_csv = get_sheet(gs.data_23)
 
     active_sheet_dict = active_sheet_csv.to_dict()
