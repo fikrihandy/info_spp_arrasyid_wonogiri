@@ -56,9 +56,9 @@ try:
     for i in column:
         nominal.append(active_sheet_dict[i][find_id])
         if i == 'Nama':
-            st.header(f'➤ Nama : {active_sheet_dict[i][find_id]} - (➤ NIM : {find_id}) - (➤ Angkatan : {angkatan})')
+            st.header(f'➤ Nama : {active_sheet_dict[i][find_id]} - (➤ NIM : {find_id}) - (➤ Angkatan : 20{angkatan})')
         elif i == 'Uang Pangkal':
-            if pd.isna(active_sheet_dict[i][find_id]):
+            if pd.isna(active_sheet_dict[i][find_id]) or active_sheet_dict[i][find_id] == ' - 🔵 𝘒𝘦𝘵. = ':
                 st.error('Belum bayar Uang Pangkal!', icon='❌')
             else:
                 st.success(f'Uang Pangkal telah terbayar: {active_sheet_dict[i][find_id]}', icon='✅')
