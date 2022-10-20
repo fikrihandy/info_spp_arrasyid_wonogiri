@@ -80,7 +80,6 @@ try:
             for x in column:
                 if x == 'Nama' or x == 'Uang Pangkal' or x[0] == '!':
                     filtered_df.append(x)
-
             df = df.drop(filtered_df)
             df = df.iloc[start - 1:end]
             st.table(df)
