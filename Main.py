@@ -71,8 +71,6 @@ try:
             nominal_show.append(i)
 
     if nominal_show:
-        print("data salah")
-
 
         def show_table(title, start, end):
             data = {"Nominal": nominal_show}
