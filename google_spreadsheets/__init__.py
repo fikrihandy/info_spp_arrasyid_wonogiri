@@ -12,3 +12,7 @@ data_23 = '644520043'
 # 4. Admin Bagian Keuangan
 phone_number = '0877-3853-5899'
 bag_keuangan = 'Ust. Firman Priyanto, S.Pd'
+
+# 5. Image
+img = 'https://4.bp.blogspot.com/-lrXcAJ6zUWA/YTYIH26tyJI/AAAAAAAAB80/cGGGS1FVKgIfBERUNTuPFQIHTuJ9Hl1EACLcBGAsYHQ/s0/program%2Bpendidikan%2Bmasyid.png'
+
