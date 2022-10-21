@@ -10,5 +10,5 @@ data_22 = '0'
 data_23 = '644520043'
 
 # 4. Admin Bagian Keuangan
-phone_number = '085xxxxxx'
+phone_number = '0877-3853-5899'
 bag_keuangan = 'Ust. Firman Priyanto, S.Pd'
