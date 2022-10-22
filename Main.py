@@ -17,16 +17,27 @@ st.title("Rekap Biaya Administrasi Ma'had Aly Ar-Rasyid")
 
 
 def nim_salah():
-    st.write("NIM salah.")
+    st.write("---")
+    st.error(f"NIM salah. Harap periksa kembali. Jika terdapat masalah silakan hubungi Admin.")
+    with st.expander(f"Admin Bag. Keuangan {gs.bag_keuangan}"):
+        f'HP / WhatsApp: {gs.phone_number}'
 
 
 def welcome():
-    st.write("M")
-    st.image(gs.img)
+    home = 'https://arrasyid.ponpes.id/'
+    donasi = 'https://donasi.arrasyid.ponpes.id/'
+    psb = 'https://psb.arrasyid.ponpes.id/'
+    st.write(f"> [Web Ar-Rasyid]({home}) * [Donasi]({donasi}) * [Penerimaan Santri Baru]({psb})")
+    col4, col5 = st.columns([2, 1])
+    col4.image(image=gs.img, use_column_width=True)
+    col5.image(image=gs.img2, use_column_width=True, caption='Penerimaan Santri Baru 2022/2023')
 
 
 try:
-    find_id = int(st.text_input('Nomor Induk Mahasantriwati :', help="Masukkan NIM lalu tekan enter."))
+    find_id = int(st.text_input(
+        label='Nomor Induk Mahasantriwati :',
+        help="Masukkan NIM lalu tekan enter."
+    ))
     find_id_str = repr(find_id)
     angkatan = int(f'{find_id_str[0]}{find_id_str[1]}')
     active_sheet_csv = pd.DataFrame()
@@ -56,7 +67,7 @@ try:
     for i in column:
         nominal.append(active_sheet_dict[i][find_id])
         if i == 'Nama':
-            st.header(f'➤ Nama : {active_sheet_dict[i][find_id]} - (➤ NIM : {find_id}) - (➤ Angkatan : 20{angkatan})')
+            st.header(f'Nama : {active_sheet_dict[i][find_id]}')
         elif i == 'Uang Pangkal':
             if pd.isna(active_sheet_dict[i][find_id]) or active_sheet_dict[i][find_id] == ' - 🔵 𝘒𝘦𝘵. = ':
                 st.error('Belum bayar Uang Pangkal!', icon='❌')
@@ -95,6 +106,9 @@ try:
 
         with col3:
             show_table(title="Semester 5 - 6", start=27, end=len(column))
+
+        if st.button(label='Refresh data'):
+            active_sheet_csv = pd.DataFrame()
 
         st.markdown("**_Informasi: Data akan otomatis update sesuai server setelah ± 5 menit_**")
         st.write(f"Admin Bagian Keuangan: {gs.phone_number} ({gs.bag_keuangan})")
