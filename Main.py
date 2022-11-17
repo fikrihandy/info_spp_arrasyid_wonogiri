@@ -107,7 +107,7 @@ try:
         with col3:
             show_table(title="Semester 5 - 6", start=27, end=len(column))
 
-        if st.button(label='Refresh data'):
+        if st.button(label='Refresh data!'):
             active_sheet_csv = pd.DataFrame()
 
         st.markdown("**_Informasi: Data akan otomatis update sesuai server setelah ± 5 menit_**")
