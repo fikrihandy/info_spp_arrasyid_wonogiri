@@ -96,7 +96,7 @@ try:
             st.table(df)
 
 
-        col1, col2, col3 = st.columns(3, gap="large")
+        col1, col2, col3 = st.columns(3, gap="small")
 
         with col1:
             show_table(title="Semester 1 - 2", start=1, end=13)
