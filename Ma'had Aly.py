@@ -45,7 +45,7 @@ try:
 
     def get_sheet(gid):
         return pd \
-            .read_csv(f'{gs.s_id}{gid}&single=true&output=csv') \
+            .read_csv(f'{gs.masyid_s_id}{gid}&single=true&output=csv') \
             .set_index('NIM')
 
 
